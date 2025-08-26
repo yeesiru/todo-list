@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import './App.css'
 import InputField from './components/InputField'
 import TodoList from './components/TodoList'
 import Filter from './components/Filter'
 import { Todo } from './model'
 import { TodoAPI } from './api'
+import { AuthContext } from "./AuthProvide";
 
 
 //React.FC = functional component
 const App : React.FC = () => {
+  const auth = useContext(AuthContext);
+  if (!auth) return null;
 
   //set initial value
   const [todo, setTodo] = useState <string> ("");
@@ -23,7 +26,10 @@ const App : React.FC = () => {
       try {
         setLoading(true);
         setError(null);
-        const fetchedTodos = await TodoAPI.getAllTodos();
+        if (!auth.token) {
+          throw new Error('No authentication token found.');
+        }
+        const fetchedTodos = await TodoAPI.getAllTodos(auth.token);
         setTodos(fetchedTodos);
       } catch (err) {
         setError('Failed to load todos. Please make sure the backend is running.');

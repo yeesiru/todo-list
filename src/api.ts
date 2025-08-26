@@ -1,11 +1,19 @@
 import { Todo } from './model';
+import { AuthContext } from "./AuthProvide";
+import keycloak from "./keycloak";
 
 const API_BASE_URL = 'http://localhost:5000/api';
 
 export class TodoAPI {
-  static async getAllTodos(): Promise<Todo[]> {
+  static async getAllTodos(token: string): Promise<Todo[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/todos`);
+      const response = await fetch(`${API_BASE_URL}/todos`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${keycloak.token}`,
+        },
+      });
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

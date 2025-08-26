@@ -2,14 +2,19 @@
   "todos": [
     {
       "id": 1,
-      "todo": "ji",
-      "isDone": true
+      "todo": "Learn React",
+      "isDone": false
     },
     {
       "id": 2,
-      "todo": "de",
+      "todo": "Learn Kafka",
+      "isDone": false
+    },
+    {
+      "id": 3,
+      "todo": "Learn Clickhouse",
       "isDone": false
     }
   ],
-  "next_id": 4
+  "next_id": 5
 }

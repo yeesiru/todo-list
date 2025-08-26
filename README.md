@@ -39,24 +39,26 @@ todo-list/
    cd backend
    ```
 
-2. **Create a Python virtual environment:**
+2. **Install Python & pip:**
    ```powershell
-   python -m venv venv
+    sudo apt install python3 python3-pip -y
    ```
 
-3. **Activate the virtual environment:**
+3. **Create a Virtual Environment:**
    ```powershell
-   venv\Scripts\Activate.ps1
+    sudo apt install python3-venv -y
+    python3 -m venv venv
+    source venv/bin/activate
    ```
 
-4. **Install Python dependencies:**
+4. **Install Flask and Flask-CORS:**
    ```powershell
-   pip install -r requirements.txt
+   pip install Flask Flask-Cors
    ```
 
-5. **Run the Flask server:**
+5. **Run Flask App:**
    ```powershell
-   python app.py
+   python3 app.py
    ```
 
    The API will be available at `http://localhost:5000`
